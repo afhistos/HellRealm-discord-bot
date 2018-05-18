@@ -19,7 +19,7 @@ public class Main implements Runnable{
 	private boolean running;
 	
 	public Main() throws LoginException {
-		jda = new JDABuilder(AccountType.BOT).setToken("NDQ0ODU4MTIxNjAxNjc5MzYx.DdiFNQ.6AeJMsOk8gNp2La44gqKkp0pxzE").buildAsync();
+		jda = new JDABuilder(AccountType.BOT).setToken("TOKEN").buildAsync();
 		jda.addEventListener(new BotListener(commandMap));
 		System.out.println("Bot started");
 		
