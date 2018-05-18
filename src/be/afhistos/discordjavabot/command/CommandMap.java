@@ -8,8 +8,12 @@ import java.util.Map;
 
 import be.afhistos.discordjavabot.Main;
 import be.afhistos.discordjavabot.command.Command.ExecutorType;
+import be.afhistos.discordjavabot.command.defaults.CommandAide;
 import be.afhistos.discordjavabot.command.defaults.CommandDefault;
 import be.afhistos.discordjavabot.command.defaults.CommandInfo;
+import be.afhistos.discordjavabot.command.defaults.CommandMcStats;
+import be.afhistos.discordjavabot.command.defaults.CommandRestart;
+import be.afhistos.discordjavabot.command.defaults.CommandSetGame;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Message;
@@ -28,8 +32,7 @@ public final class CommandMap {
 	public CommandMap(Main botDiscord) {
 		this.botDiscord = botDiscord;
 		
-		registerCommand(new CommandDefault(botDiscord));
-		registerCommand(new CommandInfo(botDiscord));
+		registerCommands(new CommandAide(botDiscord), new CommandDefault(botDiscord), new CommandInfo(botDiscord), new CommandMcStats(botDiscord), new CommandRestart(botDiscord), new CommandSetGame(botDiscord));
     }
    
     public String getTag() {

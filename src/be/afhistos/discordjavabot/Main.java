@@ -1,5 +1,12 @@
 package be.afhistos.discordjavabot;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import javax.security.auth.login.LoginException;
@@ -9,6 +16,8 @@ import be.afhistos.discordjavabot.event.BotListener;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
+import net.dv8tion.jda.core.entities.Game;
+import net.dv8tion.jda.core.entities.Game.GameType;
 
 public class Main implements Runnable{
 
@@ -19,10 +28,10 @@ public class Main implements Runnable{
 	private boolean running;
 	
 	public Main() throws LoginException {
-		jda = new JDABuilder(AccountType.BOT).setToken("TOKEN").buildAsync();
+		jda = new JDABuilder(AccountType.BOT).setToken("NDQ0ODU4MTIxNjAxNjc5MzYx.DdiFNQ.6AeJMsOk8gNp2La44gqKkp0pxzE").buildAsync();
 		jda.addEventListener(new BotListener(commandMap));
 		System.out.println("Bot started");
-		
+		jda.getPresence().setGame(Game.of(GameType.WATCHING, "afhistos galérer"));
 	}
 	
 	public JDA getJda() {
@@ -55,4 +64,30 @@ public class Main implements Runnable{
 			e.printStackTrace();
 		}
 	}
+	public static String getIpFrom(String adresse) { 
+		String toreturn = null;
+		  try {
+		    URL url = new URL(adresse); 
+		   URLConnection uc = url.openConnection(); 
+		   InputStream in = uc.getInputStream(); 
+		   int c = in.read(); 
+		   StringBuilder build = new StringBuilder();  
+		   while (c != -1) { 
+		    build.append((char) c); 
+		    c = in.read(); 
+		   } 
+		   toreturn = build.toString(); 
+		   
+		  } catch (MalformedURLException e) { 
+		  
+		   e.printStackTrace(); 
+		  } catch (IOException e) { 
+		  
+		   e.printStackTrace(); 
+		  }
+		   return toreturn;
+		 }
+
+
 }
+
